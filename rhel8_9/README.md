@@ -20,7 +20,7 @@ Instead of placing my kickstart files in the installer or locally, I will just r
 * Add the inst.ks= parameter pointing to your hosted Kickstart file. Copy the raw link of the ks file.
 
 ```ini
-inst.ks=https://raw.githubusercontent.com/cliffvj/rhel-kickstart/refs/heads/main/rhel8/webserver.ks
+inst.ks=https://raw.githubusercontent.com/cliffvj/AutomateProvision-RHEL_CentOS/refs/heads/main/rhel8_9/webserver.ks
 ```
 * Press Ctrl + X (or F10) to boot.
 
