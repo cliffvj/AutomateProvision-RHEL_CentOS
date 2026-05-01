@@ -1,0 +1,21 @@
+# Recipe for a CentOS Stream 10 image which installs GNOME GUI and OOBE wizard
+
+FROM quay.io/centos-bootc/centos-bootc:stream10
+
+# 1. Install GNOME GUI and AD integration tools
+RUN dnf -y groupinstall "Server with GUI" && \
+    dnf -y install gnome-initial-setup \
+    realmd sssd oddjob oddjob-mkhomedir adcli samba-common-tools \
+    krb5-workstation openldap-clients && \
+    dnf clean all
+
+# 2. Set graphical mode as default
+RUN systemctl set-default graphical.target
+
+# 3. Force the OOBE wizard to trigger on first boot
+RUN mkdir -p /etc/systemd/system/display-manager.service.wants && \
+    ln -s /usr/lib/systemd/system/gnome-initial-setup.service \
+    /etc/systemd/system/display-manager.service.wants/gnome-initial-setup.service
+
+# 4. Lock root to force user creation during OOBE
+RUN passwd -l root

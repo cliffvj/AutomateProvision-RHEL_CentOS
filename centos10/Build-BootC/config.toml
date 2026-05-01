@@ -1,0 +1,7 @@
+[customizations.installer.kickstart]
+contents = """
+graphical
+autopart
+clearpart --all --initlabel
+firstboot --enable
+"""
